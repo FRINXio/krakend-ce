@@ -81,3 +81,5 @@ require (
 	github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2 // indirect
 	gopkg.in/Graylog2/go-gelf.v2 v2.0.0-20180326133423-4dbb9d721348 // indirect
 )
+
+replace github.com/devopsfaith/krakend-jose => ../krakend-jose-frinx

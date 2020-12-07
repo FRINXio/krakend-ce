@@ -80,11 +80,20 @@ update_krakend_deps:
 	go get github.com/devopsfaith/krakend-xml@master
 	make test
 
-build:
-	@echo "Building the binary..."
-	@GOPROXY=https://goproxy.io go get .
-	@go build -ldflags="-X github.com/devopsfaith/krakend/core.KrakendVersion=${VERSION}" -o ${BIN_NAME} ./cmd/krakend-ce
-	@echo "You can now use ./${BIN_NAME}"
+frinx_build:
+	@echo "Building frinx binary"
+	clear
+	git clone --single-branch --branch add-redirect https://github.com/hotlib/krakend-jose.git ../krakend-jose-frinx
+	make build
+	# TODO checkout krakend-azure-plugin from a private repo
+	cd ../krakend-azure-plugin; sh build.sh;
+	mv ../krakend-azure-plugin/azure_plugin.so .
+
+#build:
+#	@echo "Building the binary..."
+#	@GOPROXY=https://goproxy.io go get .
+#	@go build -trimpath -ldflags="-X github.com/devopsfaith/krakend/core.KrakendVersion=${VERSION}" -o ${BIN_NAME} ./cmd/krakend-ce
+#	@echo "You can now use ./${BIN_NAME}"
 
 test: build
 	go test -v ./tests
@@ -94,6 +103,9 @@ docker_build:
 
 krakend_docker: docker_build
 	docker build -t devopsfaith/krakend:${VERSION} .
+
+frinx_krakend_docker: docker_build
+	docker build -t frinx/krakend:${VERSION} .
 
 krakend_docker_alpine:
 	docker build -t devopsfaith/krakend:${VERSION}-alpine -f Dockerfile.alpine .

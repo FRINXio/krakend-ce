@@ -1,6 +1,6 @@
 FROM debian:buster-slim
 
-LABEL maintainer="dortiz@devops.faith"
+LABEL maintainer="pparoulek@frinx.io"
 
 RUN apt-get update && \
 	apt-get install -y ca-certificates && \
@@ -8,6 +8,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 ADD krakend /usr/bin/krakend
+ADD azure_plugin.so /usr/local/lib/krakend/azure_plugin.so
 
 RUN useradd -r -c "KrakenD user" -U krakend
 
