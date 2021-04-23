@@ -34,6 +34,9 @@ func NewEngine(cfg config.ServiceConfig, opt luragin.EngineOptions) *gin.Engine 
 		}
 	}
 
+	engine.UnescapePathValues = false
+	engine.UseRawPath = true
+
 	logPrefix := "[SERVICE: Gin]"
 	if err := httpsecure.Register(cfg.ExtraConfig, engine); err != nil && err != httpsecure.ErrNoConfig {
 		opt.Logger.Warning(logPrefix+"[HTTPsecure]", err)
