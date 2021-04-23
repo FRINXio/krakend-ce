@@ -20,6 +20,9 @@ func NewEngine(cfg config.ServiceConfig, opt luragin.EngineOptions) *gin.Engine 
 	engine.NoRoute(opencensus.HandlerFunc(&config.EndpointConfig{Endpoint: "NoRoute"}, defaultHandler, nil))
 	engine.NoMethod(opencensus.HandlerFunc(&config.EndpointConfig{Endpoint: "NoMethod"}, defaultHandler, nil))
 
+	engine.UnescapePathValues = false
+	engine.UseRawPath = true
+
 	logPrefix := "[SERVICE: Gin]"
 	if err := httpsecure.Register(cfg.ExtraConfig, engine); err != nil && err != httpsecure.ErrNoConfig {
 		opt.Logger.Warning(logPrefix+"[HTTPsecure]", err)
