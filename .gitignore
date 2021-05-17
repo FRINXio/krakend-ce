@@ -5,3 +5,5 @@ krakend
 krakend-alpine
 cmd/krakend-integration/krakend-integration
 tests/fixtures/krakend.json.final
+azure_plugin.so
+krakend-azure-plugin/
