@@ -1,13 +1,19 @@
 ![Krakend logo](https://raw.githubusercontent.com/devopsfaith/krakend.io/master/images/logo.png)
 
 # KrakenD
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkrakendio%2Fkrakend-ce.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkrakendio%2Fkrakend-ce?ref=badge_shield)
-
 KrakenD is an extensible, ultra-high performance API Gateway that helps you effortlessly adopt microservices and secure communications. KrakenD is easy to operate and run and scales out without a single point of failure.
 
 **KrakenD Community Edition** (or *KrakenD-CE*) is the open-source distribution of [KrakenD](https://www.krakend.io).
 
 [KrakenD Site](https://www.krakend.io/) | [Documentation](https://www.krakend.io/docs/overview/) | [Blog](https://www.krakend.io/blog/) | [Twitter](https://twitter.com/krakend_io) | [Downloads](https://www.krakend.io/download/)
+
+## Frinx Custom Image Build
+Custom image used in Frinx Machine can be found on [DockerHub](https://hub.docker.com/r/frinx/krakend)
+
+Changes:
+
+- added logging filter 
+- [Azure AD plugin](https://github.com/FRINXio/krakend-azure-plugin)
 
 ## Benefits
 
@@ -56,6 +62,16 @@ Or, if you don't have or don't want to install `go`, you can build it using the 
 make build_on_docker
 ```
 
+## FPM
+You can set up your fpm docker image to run setting `DOCKER_FPM` on the `Makefile`.
 
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkrakendio%2Fkrakend-ce.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkrakendio%2Fkrakend-ce?ref=badge_large)
+
+## Using the generated packages
+The package creates a krakend user to run the service and configures the service to run under systemd.
+
+## Linux Distributions
+* just any Linux (using the `tar.gz`)
+* Ubuntu
+* Debian
+* CentOS/RedHat
+
