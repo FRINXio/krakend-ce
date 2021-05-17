@@ -88,7 +88,7 @@ test: build
 	go test -v ./tests
 
 build_on_docker:
-	docker run --rm -it -v "${PWD}:/app" -w /app golang:${GOLANG_VERSION} make build
+	docker run --rm -it -v "${PWD}:/app" -w /app golang:${GOLANG_VERSION} /app/build.sh
 
 docker:
 	docker build --pull -t devopsfaith/krakend:${VERSION} .
