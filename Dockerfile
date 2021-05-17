@@ -1,5 +1,6 @@
 ARG GOLANG_VERSION
 ARG ALPINE_VERSION
+
 FROM golang:${GOLANG_VERSION}-alpine${ALPINE_VERSION} as builder
 
 RUN apk --no-cache add make gcc musl-dev binutils-gold
@@ -9,23 +10,26 @@ WORKDIR /app
 
 RUN make build
 
-
 FROM alpine:${ALPINE_VERSION}
 
-LABEL maintainer="community@krakend.io"
+LABEL maintainer="jvolak@frinx.io"
 
-RUN apk add --no-cache ca-certificates && \
+RUN apk add --no-cache ca-certificates curl && \
     adduser -u 1000 -S -D -H krakend && \
     mkdir /etc/krakend && \
     echo '{ "version": 3 }' > /etc/krakend/krakend.json
 
 COPY --from=builder /app/krakend /usr/bin/krakend
 
-USER 1000
+COPY azure_plugin.so /usr/local/lib/krakend/azure_plugin.so
+
+RUN chown -R krakend /etc/ssl/certs
+USER krakend
+
+COPY startup.sh /startup.sh
 
 WORKDIR /etc/krakend
 
-ENTRYPOINT [ "/usr/bin/krakend" ]
-CMD [ "run", "-c", "/etc/krakend/krakend.json" ]
+ENTRYPOINT [ "/startup.sh" ]
 
 EXPOSE 8000 8090

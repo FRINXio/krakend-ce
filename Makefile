@@ -6,7 +6,7 @@
 
 BIN_NAME :=krakend
 OS := $(shell uname | tr '[:upper:]' '[:lower:]')
-VERSION := 2.0.4
+VERSION := latest
 GIT_COMMIT := $(shell git rev-parse --short=7 HEAD)
 PKGNAME := krakend
 LICENSE := Apache 2.0
@@ -81,11 +81,10 @@ update_krakend_deps:
 	go get github.com/devopsfaith/krakend-xml/v2@v2.0.0
 	make test
 
-
 build:
 	@echo "Building the binary..."
 	@go get .
-	@go build -ldflags="-X github.com/luraproject/lura/v2/core.KrakendVersion=${VERSION} \
+	@go build -trimpath -ldflags="-X github.com/luraproject/lura/v2/core.KrakendVersion=${VERSION} \
 	-X github.com/luraproject/lura/v2/core.GoVersion=${GOLANG_VERSION} \
 	-X github.com/luraproject/lura/v2/core.GlibcVersion=${GLIBC_VERSION}" \
 	-o ${BIN_NAME} ./cmd/krakend-ce
@@ -95,12 +94,12 @@ test: build
 	go test -v ./tests
 
 # Build KrakenD using docker (defaults to whatever the golang container uses)
-build_on_docker:
-	docker run --rm -it -v "${PWD}:/app" -w /app golang:${GOLANG_VERSION} make -e build
+build_krakend_plugin:
+	docker run --rm -t -v "${PWD}:/app" -w /app golang:${GOLANG_VERSION} /app/build.sh
 
 # Build the container using the Dockerfile (alpine)
-docker:
-	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t devopsfaith/krakend:${VERSION} .
+build_docker_image:
+	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t frinx/krakend:${VERSION} .
 
 benchmark:
 	@mkdir -p bench_res

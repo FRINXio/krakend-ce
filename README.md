@@ -7,6 +7,14 @@ KrakenD is an extensible, ultra-high performance API Gateway that helps you effo
 
 [KrakenD Site](https://www.krakend.io/) | [Documentation](https://www.krakend.io/docs/overview/introduction/) | [Blog](https://www.krakend.io/blog/) | [Twitter](https://twitter.com/krakend_io) | [Downloads](https://www.krakend.io/download/)
 
+## Frinx Custom Image Build
+Custom image used in Frinx Machine can be found on [DockerHub](https://hub.docker.com/r/frinx/krakend)
+
+Changes:
+
+- added logging filter 
+- [Azure AD plugin](https://github.com/FRINXio/krakend-azure-plugin)
+
 ## Benefits
 
 - **Easy integration** of an ultra-high performance gateway.
@@ -50,6 +58,21 @@ make build
 
 Or, if you don't have or don't want to install `go`, you can build it using the golang docker container:
 
+If you don't have or don't want to install `go` you can build it using the golang docker container.
 ```
 make docker_build
 ```
+
+## FPM
+You can set up your fpm docker image to run setting `DOCKER_FPM` on the `Makefile`.
+
+
+## Using the generated packages
+The package creates a krakend user to run the service and configures the service to run under systemd.
+
+## Linux Distributions
+* just any Linux (using the `tar.gz`)
+* Ubuntu
+* Debian
+* CentOS/RedHat
+
