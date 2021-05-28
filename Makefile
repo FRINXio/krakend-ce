@@ -83,14 +83,14 @@ update_krakend_deps:
 build:
 	@echo "Building the binary..."
 	@go get .
-	@go build -ldflags="-X github.com/luraproject/lura/core.KrakendVersion=${VERSION}" -o ${BIN_NAME} ./cmd/krakend-ce
+	@go build -trimpath -ldflags="-X github.com/luraproject/lura/core.KrakendVersion=${VERSION}" -o ${BIN_NAME} ./cmd/krakend-ce
 	@echo "You can now use ./${BIN_NAME}"
 
 test: build
 	go test -v ./tests
 
 build_on_docker:
-	docker run --rm -it -v "${PWD}:/app" -w /app golang:${GOLANG_VERSION} /app/build.sh
+	docker run --rm -t -v "${PWD}:/app" -w /app golang:${GOLANG_VERSION} /app/build.sh
 
 docker:
 	docker build --pull -t devopsfaith/krakend:${VERSION} .

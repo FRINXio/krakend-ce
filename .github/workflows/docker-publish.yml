@@ -21,10 +21,11 @@ jobs:
 
 
       - name: Checkout krakend-azure-plugin private repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
         with:
           repository: FRINXio/krakend-azure-plugin
-          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+          path: ./krakend-azure-plugin
 
       - name: Build KrakenD 
         run: | 
