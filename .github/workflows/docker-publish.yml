@@ -21,7 +21,6 @@ env:
 jobs:
   push:
     runs-on: ubuntu-latest
-    permissions: read-all
     steps:
       - uses: actions/checkout@v2
         with:
@@ -34,7 +33,6 @@ jobs:
           repository: FRINXio/krakend-azure-plugin
           ref: master
           path: ./krakend-azure-plugin
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build KrakenD 
         run: | 
