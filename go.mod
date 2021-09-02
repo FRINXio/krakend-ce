@@ -48,6 +48,7 @@ require (
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0 // indirect
 	github.com/hashicorp/consul v1.6.10 // indirect
 	github.com/hashicorp/vault v1.6.0 // indirect
+	github.com/ifaisalalam/krakend-gin-logger v1.4.0
 	github.com/influxdata/influxdb v1.7.4 // indirect
 	github.com/influxdata/platform v0.0.0-20190117200541-d500d3cf5589 // indirect
 	github.com/jonboulle/clockwork v0.1.0 // indirect

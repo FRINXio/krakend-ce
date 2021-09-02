@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/luraproject/lura/config"
 	"github.com/luraproject/lura/logging"
+	"github.com/ifaisalalam/krakend-gin-logger"
 )
 
 // NewEngine creates a new gin engine with some default values and a secure middleware
@@ -18,8 +19,11 @@ func NewEngine(cfg config.ServiceConfig, logger logging.Logger, w io.Writer) *gi
 	}
 
 	engine := gin.New()
-	engine.Use(gin.LoggerWithConfig(gin.LoggerConfig{Output: w}), gin.Recovery())
-
+	engine.Use(gin_logger.NewLogger(
+			       cfg.ExtraConfig,
+			       logger,
+			       gin.LoggerConfig{Output: w}), gin.Recovery())
+				   
 	engine.RedirectTrailingSlash = true
 	engine.RedirectFixedPath = true
 	engine.HandleMethodNotAllowed = true
