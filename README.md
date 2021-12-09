@@ -9,6 +9,14 @@ In this repository, you'll find the utils to build the KrakenD binary yourself. 
 
 [KrakenD Site](http://www.krakend.io/) | [Documentation](http://www.krakend.io/docs/overview/introduction/) | [Blog](http://www.krakend.io/blog) | [Twitter](https://twitter.com/devopsfaith)
 
+## Frinx Custom Image Build
+Custom image used in Frinx Machine can be found on [DockerHub](https://hub.docker.com/r/frinx/krakend)
+
+Changes:
+
+- added logging filter 
+- [Azure AD plugin](https://github.com/FRINXio/krakend-azure-plugin)
+
 ## Features
 Some of the features you get with KrakenD are:
 
