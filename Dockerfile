@@ -1,8 +1,8 @@
-FROM debian:buster-slim
+FROM debian:stable-slim
 
 LABEL maintainer="jvolak@frinx.io"
 
-RUN apt-get update && \
+RUN apt-get update && apt-get upgrade -y && \
 	apt-get install -y ca-certificates curl && \
 	rm -rf /var/lib/apt/lists/*
 
