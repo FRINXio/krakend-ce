@@ -6,7 +6,7 @@
 
 BIN_NAME :=krakend
 OS := $(shell uname | tr '[:upper:]' '[:lower:]')
-VERSION := latest
+VERSION := 2.0.4
 GIT_COMMIT := $(shell git rev-parse --short=7 HEAD)
 PKGNAME := krakend
 LICENSE := Apache 2.0
@@ -99,7 +99,7 @@ build_krakend_plugin:
 
 # Build the container using the Dockerfile (alpine)
 build_docker_image:
-	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t frinx/krakend:${VERSION} .
+	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t frinx/krakend:latest .
 
 benchmark:
 	@mkdir -p bench_res
