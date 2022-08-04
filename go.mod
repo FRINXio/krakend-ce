@@ -33,8 +33,10 @@ require (
 	github.com/devopsfaith/krakend-xml/v2 v2.0.0
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-contrib/uuid v1.2.0
+	github.com/jozefiel/krakend-ssh v0.0.0-20210220032951-036812b2e83c
 	github.com/luraproject/lura/v2 v2.0.4
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+
 )
 
 require (
@@ -107,6 +109,7 @@ require (
 	github.com/google/wire v0.4.0 // indirect
 	github.com/googleapis/gax-go v2.0.2+incompatible // indirect
 	github.com/googleapis/gax-go/v2 v2.0.5 // indirect
+	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
@@ -192,7 +195,7 @@ require (
 	gocloud.dev/pubsub/natspubsub v0.21.0 // indirect
 	gocloud.dev/pubsub/rabbitpubsub v0.21.0 // indirect
 	gocloud.dev/secrets/hashivault v0.21.0 // indirect
-	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
+	golang.org/x/crypto v0.0.0-20220214200702-86341886e292 // indirect
 	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
 	golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
@@ -219,3 +222,5 @@ require (
 replace github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79 => github.com/m4ns0ur/httpcache v0.0.0-20200426190423-1040e2e8823f
 
 replace github.com/auth0-community/go-auth0 v1.0.0 => github.com/devopsfaith/go-auth0 v0.0.0-20220422124632-a1358a81b559
+
+replace github.com/jozefiel/krakend-ssh v0.0.0-20210220032951-036812b2e83c => ./krakend-ssh

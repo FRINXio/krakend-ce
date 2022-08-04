@@ -1,0 +1,10 @@
+uniconfig:
+    host: "127.0.0.1"
+    port: "2022"
+    user: "admin"
+    password: "admin"
+unistore:
+    host: "127.0.0.1"
+    port: "2022"
+    user: "admin"
+    password: "admin"

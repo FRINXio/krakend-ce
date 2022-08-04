@@ -99,7 +99,7 @@ build_krakend_plugin:
 
 # Build the container using the Dockerfile (alpine)
 build_docker_image:
-	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t frinx/krakend:latest .
+	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} -t frinx/krakend:test .
 
 benchmark:
 	@mkdir -p bench_res

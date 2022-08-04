@@ -1,0 +1,66 @@
+// package main
+
+// import (
+// 	"io/ioutil"
+// 	"log"
+// 	"net/http"
+
+// 	"github.com/gorilla/mux"
+// 	"gopkg.in/yaml.v2"
+// )
+
+// type ssh_clients struct {
+// 	Host     string `yaml:"host"`
+// 	Port     string `yaml:"port"`
+// 	User     string `yaml:"user"`
+// 	Password string `yaml:"password"`
+// }
+
+// func parse_configs(client_name string, config ssh_clients) ssh_clients {
+
+// 	if config.Host == "" {
+// 		log.Fatal("host can not be empty")
+// 	}
+
+// 	if config.Port == "" {
+// 		log.Println("Port set to 22 for client", client_name)
+// 		config.Port = "22"
+// 	}
+
+// 	if config.User == "" {
+// 		log.Fatal("user can not be empty")
+// 	}
+
+// 	if config.Password == "" {
+// 		log.Fatal("password can not be empty")
+// 	}
+// 	return config
+// }
+
+// func main() {
+
+// 	yfile, err := ioutil.ReadFile("config.yaml")
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+
+// 	data := make(map[string]ssh_clients)
+// 	err = yaml.Unmarshal(yfile, &data)
+
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+
+// 	router := mux.NewRouter()
+// 	router.HandleFunc("/api/{uniconfig}", sendCommand).Methods("PUT")
+// 	router.HandleFunc("/api/{uniconfig}", getOutput).Methods("GET")
+// 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./front/")))
+
+// 	for client, config := range data {
+// 		config = parse_configs(client, config)
+// 		handler := &sshHandler{host: client, addr: config.Host, port: config.Port, user: config.User, secret: config.Password}
+// 		handler.sshClient()
+// 	}
+// 	log.Fatal(http.ListenAndServe(":8080", router))
+
+// }

@@ -33,6 +33,7 @@ import (
 	_ "github.com/devopsfaith/krakend-opencensus/v2/exporter/zipkin"
 	pubsub "github.com/devopsfaith/krakend-pubsub/v2"
 	"github.com/devopsfaith/krakend-usage/client"
+	ssh "github.com/jozefiel/krakend-ssh"
 	"github.com/luraproject/lura/v2/async"
 	"github.com/luraproject/lura/v2/config"
 	"github.com/luraproject/lura/v2/core"
@@ -132,6 +133,7 @@ type ExecutorBuilder struct {
 	HandlerFactory              HandlerFactory
 	RunServerFactory            RunServerFactory
 	AgentStarterFactory         AgentStarter
+	SshRegister                 SshRegister
 
 	Middlewares []gin.HandlerFunc
 }
@@ -158,6 +160,9 @@ func (e *ExecutorBuilder) NewCmdExecutor(ctx context.Context) cmd.Executor {
 		}
 
 		metricCollector := e.MetricsAndTracesRegister.Register(ctx, cfg, logger)
+
+		e.SshRegister.Register(ctx, cfg, logger)
+		logger.Info("ssh")
 
 		tokenRejecterFactory, err := e.TokenRejecterFactory.NewTokenRejecter(
 			ctx,
@@ -235,6 +240,9 @@ func (e *ExecutorBuilder) checkCollaborators() {
 	}
 	if e.MetricsAndTracesRegister == nil {
 		e.MetricsAndTracesRegister = new(MetricsAndTraces)
+	}
+	if e.SshRegister == nil {
+		e.SshRegister = new(SSH)
 	}
 	if e.EngineFactory == nil {
 		e.EngineFactory = new(engineFactory)
@@ -390,4 +398,24 @@ func startReporter(ctx context.Context, logger logging.Logger, cfg config.Servic
 
 type gelfWriterWrapper struct {
 	io.Writer
+}
+
+type SshRegister interface {
+	Register(context.Context, config.ServiceConfig, logging.Logger)
+}
+
+type SSH struct{}
+
+// Register registers the metrics, influx and opencensus packages as required by the given configuration.
+func (SSH) Register(ctx context.Context, cfg config.ServiceConfig, l logging.Logger) {
+
+	go func() {
+		if err := ssh.New(ctx, cfg.ExtraConfig, l); err != nil {
+			if err != ssh.ErrNoConfig {
+				l.Warning("[SERVICE: ssh]", err.Error())
+			}
+		} else {
+			l.Debug("[SERVICE: ssh] Service correctly registered")
+		}
+	}()
 }
