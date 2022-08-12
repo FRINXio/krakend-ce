@@ -106,4 +106,6 @@ var aliases = map[string]string{
 	"github.com/devopsfaith/krakend-lua/proxy":         "modifier/lua-proxy",
 	"github.com/devopsfaith/krakend-lua/proxy/backend": "modifier/lua-backend",
 	"github.com/devopsfaith/krakend-martian":           "modifier/martian",
+
+	"github.com/jozefiel/krakend-websocket": "contribute/websocketproxy",
 }

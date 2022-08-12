@@ -41,6 +41,8 @@ import (
 	router "github.com/luraproject/lura/v2/router/gin"
 	serverhttp "github.com/luraproject/lura/v2/transport/http/server"
 	server "github.com/luraproject/lura/v2/transport/http/server/plugin"
+
+	websocketproxy "github.com/jozefiel/krakend-websocket"
 )
 
 // NewExecutor returns an executor for the cmd package. The executor initalizes the entire gateway by
@@ -132,8 +134,8 @@ type ExecutorBuilder struct {
 	HandlerFactory              HandlerFactory
 	RunServerFactory            RunServerFactory
 	AgentStarterFactory         AgentStarter
-
-	Middlewares []gin.HandlerFunc
+	WebsocketProxyRegister      WebsocketProxyRegister
+	Middlewares                 []gin.HandlerFunc
 }
 
 // NewCmdExecutor returns an executor for the cmd package. The executor initializes the entire gateway by
@@ -158,6 +160,8 @@ func (e *ExecutorBuilder) NewCmdExecutor(ctx context.Context) cmd.Executor {
 		}
 
 		metricCollector := e.MetricsAndTracesRegister.Register(ctx, cfg, logger)
+
+		e.WebsocketProxyRegister.Register(ctx, cfg, logger)
 
 		tokenRejecterFactory, err := e.TokenRejecterFactory.NewTokenRejecter(
 			ctx,
@@ -256,6 +260,9 @@ func (e *ExecutorBuilder) checkCollaborators() {
 	}
 	if e.AgentStarterFactory == nil {
 		e.AgentStarterFactory = async.AgentStarter([]async.Factory{asyncamqp.StartAgent})
+	}
+	if e.WebsocketProxyRegister == nil {
+		e.WebsocketProxyRegister = new(WebsocketProxy)
 	}
 }
 
@@ -390,4 +397,22 @@ func startReporter(ctx context.Context, logger logging.Logger, cfg config.Servic
 
 type gelfWriterWrapper struct {
 	io.Writer
+}
+
+type WebsocketProxyRegister interface {
+	Register(context.Context, config.ServiceConfig, logging.Logger)
+}
+
+type WebsocketProxy struct{}
+
+// Register registers the metrics, influx and opencensus packages as required by the given configuration.
+func (WebsocketProxy) Register(ctx context.Context, cfg config.ServiceConfig, l logging.Logger) {
+
+	if err := websocketproxy.New(ctx, cfg.ExtraConfig, l); err != nil {
+		if err != websocketproxy.ErrNoConfig {
+			l.Warning("[SERVICE: Websocketproxy]", err.Error())
+		}
+	} else {
+		l.Debug("[SERVICE: Websocketproxy] Service correctly registered")
+	}
 }
