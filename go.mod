@@ -3,6 +3,7 @@ module github.com/devopsfaith/krakend-ce/v2
 go 1.17
 
 require (
+	github.com/FRINXio/krakend-websocket v0.0.0-20220817114919-509e6432f8ac
 	github.com/devopsfaith/bloomfilter/v2 v2.0.0
 	github.com/devopsfaith/krakend-amqp/v2 v2.0.1
 	github.com/devopsfaith/krakend-botdetector/v2 v2.0.0
@@ -33,7 +34,6 @@ require (
 	github.com/devopsfaith/krakend-xml/v2 v2.0.0
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-contrib/uuid v1.2.0
-	github.com/jozefiel/krakend-websocket v0.0.0-20220812102249-ffcae98bf819
 	github.com/luraproject/lura/v2 v2.0.5
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 )

@@ -42,7 +42,7 @@ import (
 	serverhttp "github.com/luraproject/lura/v2/transport/http/server"
 	server "github.com/luraproject/lura/v2/transport/http/server/plugin"
 
-	websocketproxy "github.com/jozefiel/krakend-websocket"
+	websocketproxy "github.com/FRINXio/krakend-websocket"
 )
 
 // NewExecutor returns an executor for the cmd package. The executor initalizes the entire gateway by

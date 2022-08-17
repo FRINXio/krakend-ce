@@ -154,6 +154,12 @@ github.com/DataDog/datadog-go v3.4.1+incompatible h1:hRUopimy+td4Lc3QDvP/hsbQKI3
 github.com/DataDog/datadog-go v3.4.1+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
 github.com/DataDog/opencensus-go-exporter-datadog v0.0.0-20191210083620-6965a1cfed68 h1:mH5GS97R/ubxJHOcCx2+x+wlwfkiSvaKbDzPxdkROmM=
 github.com/DataDog/opencensus-go-exporter-datadog v0.0.0-20191210083620-6965a1cfed68/go.mod h1:gMGUEe16aZh0QN941HgDjwrdjU4iTthPoz2/AtDRADE=
+github.com/FRINXio/krakend-websocket v0.0.0-20220817080253-f6669dd09e26 h1:OUcd5VjEIowgyLZaGZx4sff4vGuV9hPCHx+wEY42+04=
+github.com/FRINXio/krakend-websocket v0.0.0-20220817080253-f6669dd09e26/go.mod h1:hPGyMt+6Kr0dkr9cp/o9oIk4SGDFpZfZawS4nEbFwU0=
+github.com/FRINXio/krakend-websocket v0.0.0-20220817101406-e60d234c7dbf h1:Naz5k21fFjj9XpdvQEhHyTo6ZDJJf/D8gf4lMU7srRc=
+github.com/FRINXio/krakend-websocket v0.0.0-20220817101406-e60d234c7dbf/go.mod h1:hPGyMt+6Kr0dkr9cp/o9oIk4SGDFpZfZawS4nEbFwU0=
+github.com/FRINXio/krakend-websocket v0.0.0-20220817114919-509e6432f8ac h1:4wDgEv0MtFpMX/h2T1djIVeRX9NeERXlYHkxr8gxp2c=
+github.com/FRINXio/krakend-websocket v0.0.0-20220817114919-509e6432f8ac/go.mod h1:hPGyMt+6Kr0dkr9cp/o9oIk4SGDFpZfZawS4nEbFwU0=
 github.com/GoogleCloudPlatform/cloudsql-proxy v0.0.0-20191009163259-e802c2cb94ae/go.mod h1:mjwGPas4yKduTyubHvD1Atl9r1rUq8DfVy+gkVvZ+oo=
 github.com/GoogleCloudPlatform/cloudsql-proxy v1.19.1/go.mod h1:+yYmuKqcBVkgRePGpUhTA9OEg0XsnFE96eZ6nJ2yCQM=
 github.com/Knetic/govaluate v3.0.1-0.20171022003610-9aa49832a739+incompatible/go.mod h1:r7JcOSlj0wfOMncg0iLm8Leh48TZaKVeNIfJntJ2wa0=

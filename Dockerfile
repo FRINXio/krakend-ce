@@ -3,12 +3,15 @@ ARG ALPINE_VERSION
 
 FROM golang:${GOLANG_VERSION}-alpine${ALPINE_VERSION} as builder
 
-RUN apk --no-cache add make gcc musl-dev binutils-gold
+RUN apk --no-cache add make gcc musl-dev binutils-gold git
 
 COPY . /app
 WORKDIR /app
 
-RUN make build
+ARG GH_TOKEN
+ENV GH_TOKEN=${GH_TOKEN}
+
+RUN git config --global url."https://${GH_TOKEN}:x-oauth-basic@github.com/FRINXio".insteadOf "https://github.com/FRINXio" && make build
 
 FROM alpine:${ALPINE_VERSION}
 
