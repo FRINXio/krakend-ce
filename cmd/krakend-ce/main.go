@@ -14,6 +14,7 @@ import (
 	flexibleconfig "github.com/krakendio/krakend-flexibleconfig/v2"
 	viper "github.com/krakendio/krakend-viper/v2"
 	"github.com/luraproject/lura/v2/config"
+
 )
 
 const (
@@ -105,4 +106,6 @@ var aliases = map[string]string{
 	"github.com/devopsfaith/krakend-lua/proxy":         "modifier/lua-proxy",
 	"github.com/devopsfaith/krakend-lua/proxy/backend": "modifier/lua-backend",
 	"github.com/devopsfaith/krakend-martian":           "modifier/martian",
+
+	"github.com/FRINXio/krakend-websocket": "contribute/websocketproxy",
 }
