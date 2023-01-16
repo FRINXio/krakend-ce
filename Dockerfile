@@ -7,8 +7,8 @@ RUN apk --no-cache --virtual .build-deps add make gcc musl-dev binutils-gold git
 COPY . /app
 WORKDIR /app
 
-ARG GH_TOKEN
-ENV GH_TOKEN=${GH_TOKEN}
+ARG TOKEN
+ENV TOKEN=${TOKEN}
 
 RUN make build
 
