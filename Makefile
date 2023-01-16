@@ -52,13 +52,19 @@ RPM_OPTS =--rpm-user $(USER) \
 	--before-remove builder/scripts/prerm.rpm \
   --after-remove builder/scripts/postrm.rpm
 
+test_token_env:
+ifeq ($(origin TOKEN),undefined)
+	echo "Set github access token to TOKEN env variable"
+	exit 1
+endif
+
 all: test
 
 build:
+	@make test_token_env
 	@echo "Building the binary..."
 	@export GOPRIVATE="github.com/FRINXio/krakend-websocket"
-	@echo ${GH_TOKEN}
-	@git config --global url."https://${GH_TOKEN}:x-oauth-basic@github.com/FRINXio".insteadOf "https://github.com/FRINXio"
+	@git config --global url."https://${TOKEN}:x-oauth-basic@github.com/FRINXio".insteadOf "https://github.com/FRINXio"
 	@go get .
 	@go build -trimpath -ldflags="-X github.com/luraproject/lura/v2/core.KrakendVersion=${VERSION} \
 	-X github.com/luraproject/lura/v2/core.GoVersion=${GOLANG_VERSION} \
@@ -68,7 +74,8 @@ build:
 	@echo "You can now use ./${BIN_NAME}"
 
 test: build
-	docker run --rm -t --env GH_TOKEN=${TOKEN} -v "${PWD}:/app" -w /app golang:${GOLANG_VERSION} /app/test.sh
+	make build
+	go test -v ./tests
 
 # Build KrakenD using docker (defaults to whatever the golang container uses)
 
@@ -79,7 +86,8 @@ build_on_docker: docker-builder-linux
 	docker run --rm -it -v "${PWD}:/app" -w /app krakend/builder:${VERSION}-linux-generic sh -c "git config --global --add safe.directory /app && make -e build"
 
 build_docker_image:
-	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg GH_TOKEN=${TOKEN} -t frinx/krakend:${IMAGE_VERSION} .
+	@make test_token_env
+	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg TOKEN=${TOKEN} -t frinx/krakend:${IMAGE_VERSION} .
 
 # Build the container using the Dockerfile (alpine)
 docker:
