@@ -20,3 +20,5 @@ jobs:
 
     - name: Test
       run: make test
+      env:
+        GH_TOKEN: ${{ secrets.TOKEN }}

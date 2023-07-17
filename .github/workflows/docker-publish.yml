@@ -32,7 +32,9 @@ jobs:
 
       - name: Build KrakenD image
         run: make build_docker_image
-
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+          
       - name: Log into Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
