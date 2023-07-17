@@ -3,6 +3,7 @@ module github.com/krakendio/krakend-ce/v2
 go 1.22
 
 require (
+	github.com/FRINXio/krakend-websocket v1.0.3
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-contrib/uuid v1.2.0
 	github.com/krakend/krakend-otel v0.6.1
@@ -105,6 +106,7 @@ require (
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect
 	github.com/clbanning/mxj v1.8.4 // indirect
+	github.com/coreos/go-oidc v2.2.1+incompatible // indirect
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/dlclark/regexp2 v1.1.6 // indirect
@@ -126,6 +128,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.18.0 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
+	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
 	github.com/golang-jwt/jwt/v5 v5.2.1 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
@@ -187,12 +190,14 @@ require (
 	github.com/nats-io/nkeys v0.4.7 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7 // indirect
+	github.com/open-networks/go-msgraph v0.3.4 // indirect
 	github.com/openzipkin/zipkin-go v0.2.5 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
 	github.com/philhofer/fwd v1.1.2 // indirect
 	github.com/pierrec/lz4/v4 v4.1.21 // indirect
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c // indirect
+	github.com/pquerna/cachecontrol v0.2.0 // indirect
 	github.com/prometheus/client_golang v1.19.1 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.55.0 // indirect
@@ -271,6 +276,7 @@ require (
 	gopkg.in/DataDog/dd-trace-go.v1 v1.62.0 // indirect
 	gopkg.in/Graylog2/go-gelf.v2 v2.0.0-20191017102106-1550ee647df0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
+	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
