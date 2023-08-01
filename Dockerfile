@@ -14,6 +14,8 @@ RUN make build
 
 FROM alpine:${ALPINE_VERSION}
 
+ARG git_commit=unspecified
+LABEL git_commit="${git_commit}"
 LABEL maintainer="jvolak@frinx.io"
 LABEL org.opencontainers.image.source="https://github.com/FRINXio/krakend-ce"
 
