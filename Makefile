@@ -87,7 +87,7 @@ build_on_docker: docker-builder-linux
 
 build_docker_image:
 	@make test_token_env
-	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg TOKEN=${TOKEN} -t frinx/krakend:${IMAGE_VERSION} .
+	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg TOKEN=${TOKEN} --build-arg git_commit=$(git rev-parse HEAD) -t frinx/krakend:${IMAGE_VERSION} .
 
 # Build the container using the Dockerfile (alpine)
 docker:
