@@ -15,6 +15,7 @@ RUN make build
 FROM alpine:${ALPINE_VERSION}
 
 LABEL maintainer="jvolak@frinx.io"
+LABEL org.opencontainers.image.source="https://github.com/FRINXio/krakend-ce"
 
 RUN apk add --no-cache ca-certificates tzdata curl && \
     adduser -u 1000 -S -D -H krakend && \
