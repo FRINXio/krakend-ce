@@ -22,11 +22,10 @@ LABEL org.opencontainers.image.source="https://github.com/FRINXio/krakend-ce"
 RUN apk add --no-cache ca-certificates tzdata curl && \
     adduser -u 1000 -S -D -H krakend && \
     mkdir /etc/krakend && \
-    echo '{ "version": 3 }' > /etc/krakend/krakend.json
+    echo '{ "version": 3, "plugin": { "pattern": ".so", "folder": "/usr/local/lib/krakend/" }}' > /etc/krakend/krakend.json
 
 COPY --from=builder /app/krakend /usr/bin/krakend
-
-COPY azure_plugin.so /usr/local/lib/krakend/azure_plugin.so
+COPY --from=builder /app/*.so /usr/local/lib/krakend/
 
 RUN chown -R krakend /etc/ssl/certs
 USER krakend

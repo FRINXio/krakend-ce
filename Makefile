@@ -62,6 +62,8 @@ all: test
 
 build:
 	@make test_token_env
+	@echo "Building plugin binaries"
+	@./build.sh
 	@echo "Building the binary..."
 	@export GOPRIVATE="github.com/FRINXio/krakend-websocket"
 	@git config --global url."https://${TOKEN}:x-oauth-basic@github.com/FRINXio".insteadOf "https://github.com/FRINXio"
@@ -78,14 +80,11 @@ test: build
 
 # Build KrakenD using docker (defaults to whatever the golang container uses)
 
-build_krakend_plugin:
-	docker run --rm -t -v "${PWD}:/app" -w /app golang:${GOLANG_VERSION} /app/build.sh
 
 build_on_docker: docker-builder-linux
 	docker run --rm -it -v "${PWD}:/app" -w /app krakend/builder:${VERSION}-linux-generic sh -c "git config --global --add safe.directory /app && make -e build"
 
 build_docker_image:
-	@make test_token_env
 	docker build --no-cache --pull --build-arg GOLANG_VERSION=${GOLANG_VERSION} --build-arg ALPINE_VERSION=${ALPINE_VERSION} --build-arg TOKEN=${TOKEN} --build-arg git_commit=$(git rev-parse HEAD) -t frinx/krakend:${IMAGE_VERSION} .
 
 # Build the container using the Dockerfile (alpine)
