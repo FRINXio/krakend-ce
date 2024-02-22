@@ -7,3 +7,6 @@ cmd/krakend-integration/krakend-integration
 tests/fixtures/krakend.json.final
 azure_plugin.so
 krakend-azure-plugin/
+oauth2_proxy_plugin.so
+krakend-oauth2-proxy-plugin/*.so
+krakend-websocket

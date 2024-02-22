@@ -27,9 +27,6 @@ jobs:
           path: ./krakend-azure-plugin
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build KrakenD plugin
-        run: make build_krakend_plugin
-
       - name: Build KrakenD image
         run: make build_docker_image
         env:
