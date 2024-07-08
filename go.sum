@@ -90,8 +90,8 @@ github.com/DataDog/datadog-go v4.8.3+incompatible h1:fNGaYSuObuQb5nzeTQqowRAd9bp
 github.com/DataDog/datadog-go v4.8.3+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
 github.com/DataDog/opencensus-go-exporter-datadog v0.0.0-20220622145613-731d59e8b567 h1:Z7zdcyzme2egv0lC43X1Q/+DxHjZflQCnJXX0mDp7+I=
 github.com/DataDog/opencensus-go-exporter-datadog v0.0.0-20220622145613-731d59e8b567/go.mod h1:/VV3EFO/hTNQZHAqaj+CPGy2+ioFrP4EX3iRwozubhQ=
-github.com/FRINXio/krakend-websocket v1.0.3 h1:oI/GMz5+KYLU7XHH0jIKhAGUGt6acZyTeo01jiQHzBU=
-github.com/FRINXio/krakend-websocket v1.0.3/go.mod h1:OQWceeQSeTtHMJINscuUFMakAYHTnvxhKWXMILEz0ow=
+github.com/FRINXio/krakend-websocket v1.1.0 h1:NkrNXO3r9M2C21FXNnUW/EucTsPf2pmMYf2LihSg+xA=
+github.com/FRINXio/krakend-websocket v1.1.0/go.mod h1:oUE2M75ibFyBr+InE4B3uavydRJcxwydx94Ko0Tk84U=
 github.com/IBM/sarama v1.43.1 h1:Z5uz65Px7f4DhI/jQqEm/tV9t8aU+JUdTyW/K/fCXpA=
 github.com/IBM/sarama v1.43.1/go.mod h1:GG5q1RURtDNPz8xxJs3mgX6Ytak8Z9eLhAkJPObe2xE=
 github.com/Masterminds/goutils v1.1.1 h1:5nUrii3FMTL5diU80unEVvNevw1nH4+ZV4DSLVJLSYI=
